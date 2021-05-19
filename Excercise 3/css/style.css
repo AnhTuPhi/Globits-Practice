@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+li:nth-child(2n+1){
+    background-color: red;
+}
+li:nth-child(2n){
+    background-color: blue;
+}
+li{
+    height:200px;
+    width:220px;
+    float:left;
+    display:grid;
+}
+.error{
+    color:red;
+    width:220px;
+}
+span{
+    float:left;
+    height:200px;
+    width:220px;
+}
+span:nth-child(2n+1){
+    background-color: red;
+}
+span:nth-child(2n){
+    background-color: blue;
+}

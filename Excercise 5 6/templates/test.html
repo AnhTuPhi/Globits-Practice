@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excercise 5 6</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+   <form >
+                                <h2>Đăng nhập</h2>
+                                <div class="form-group">
+                                   
+                                    <input id="username"
+                                        placeholder="Enter username" >
+                                    <p id="errorName"></p>
+                                </div>
+                                <div class="form-group">
+                                   
+                                    <input type="password"  id="pwd" placeholder="Enter password">
+                                    <p id="errorPass"></p>
+                                </div>
+                                <span  onclick="loading()" id="loading">Đăng nhập</span>
+                               
+                            </form>
+    <!--Javascript link-->
+    <script>
+       var oldpass ='admin';
+
+function validate(){
+    const user = document.getElementById('username');
+    const pwd = document.getElementById('pwd');
+    if(user.trim().length ==0){
+        document.getElementById('errorName').innerHTML = "Xin moi nhap username";
+        return false;
+    }
+    else{
+        document.getElementById('errorName').innerHTML = "";
+    }
+    if(pwd.trim().length ==0){
+        document.getElementById('errorPass').innerHTML = "Xin moi nhap password";
+        return false;
+    }
+    else{
+        document.getElementById('errorPass').innerHTML = "";
+    }
+    if(user!='admin' && user!=null){
+        document.getElementById('errorName').innerHTML = "Sai username";
+        return false;
+    }
+    else{
+        document.getElementById('errorName').innerHTML = "";
+    }
+    if(pwd!= oldpass && user!=null){
+        document.getElementById('errorPass').innerHTML = "Sai password";
+        return false;
+    }
+    else{
+        document.getElementById('errorPass').innerHTML = "";
+    }
+    if(true){
+        document.getElementById('login').innerText = "Dang nhap thanh cong";
+        document.getElementById('login').style.background = 'antiquewhite';
+        document.getElementById('success').innerText = "Dang nhap thanh cong";;
+    }
+}
+function reset(){
+    document.getElementById('username').value ='';
+    document.getElementById('pwd').value ='';
+    document.getElementById('username').value ='';
+    document.getElementById('oldpass').value ='';
+    document.getElementById('newpass').value ='';
+    document.getElementById('errorOldpass').value ='';
+    document.getElementById('errorNewPass').value ='';
+    document.getElementById('success').value ='';
+}
+function loading(){
+    document.getElementById('loading').innerHTML = 'Loading....';
+    setTimeout(function (){
+        validate();
+        document.getElementById('loading').innerHTML = 'Login';
+    }, 1000);
+}
+
+    </script>
+</body>
+
+</html>

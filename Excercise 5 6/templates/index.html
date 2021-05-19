@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <section id="form-wrapped">
+        <div class="container">
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+                Đăng nhập</button>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 id="formName">Login Form</h2>
+                        </div>
+                        <div class="modal-body">
+                            <form id="login">
+                                <div class="form-group col-lg-12">
+                                    <input type="text" class="form-control" style="height:50px;width:100%;"
+                                        id="username" aria-describedby="helpId" placeholder="Username">
+                                    <span id="errorName" style="color:red;"></span>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <input type="password" class="form-control" style="height:50px;width:100%;"
+                                        id="password" aria-describedby="helpId" placeholder="Password">
+                                    <span id="errorPass" style="color:red;"></span>
+                                </div>
+                                <div style="width:100%;padding:0px 15px;" class="form-group ">
+                                    <span id="success" style="color:green;"></span>
+                                    <button class=" form-control"
+                                        style="width:100%;background-color: #00ce81;color:white" type="button"
+                                        id="loading" onclick="loadingLogin()" aria-label="">
+                                        Login
+                                    </button>
+                                    <div class="footer-form"
+                                        style="height:30px;width:100%;background-color: gainsboro;cursor:pointer;text-align:center;margin:15px auto;padding:6px 20px;">
+                                        <a style="width:100%;color:red;text-decoration:none;" onclick="forgot()">Forgot
+                                            Password</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="save" style="display:none;">
+                                <div class="form-group col-lg-12">
+                                    <input type="password" class="form-control" style="height:50px;width:100%;" id="oldpass"
+                                        aria-describedby="helpId" placeholder="OldPassword">
+                                    <span id="errorOld" style="color:red;"></span>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <input type="password" class="form-control" style="height:50px;width:100%;"
+                                        id="newpass" aria-describedby="helpId" placeholder="NewPassword">
+                                    <span id="errorNew" style="color:red;"></span>
+                                </div>
+                                <div style="width:100%;padding:0px 15px;" class="form-group ">
+                                    <button class=" form-control"
+                                        style="width:100%;background-color: #00ce81;color:white" type="button"
+                                        id="loading" onclick="validateNewPass()" aria-label="">
+                                        Save
+                                    </button>
+                                    <span id="success" style="color:green;"></span>
+                                    <div class="footer-form"
+                                        style="height:30px;width:100%;background-color: gainsboro;cursor:pointer;text-align:center;margin:15px auto;padding:6px 20px;">
+                                        <a style="width:100%;color:red;text-decoration:none;" onclick="goBack()">Go
+                                            Back</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var oldpass = 'admin';
+
+        function validate() {
+            const user = document.getElementById('username').value;
+            const pwd = document.getElementById('password').value;
+            console.log(user);
+            console.log(pwd);
+            if (user.length == 0 || user == null) {
+                document.getElementById('errorName').innerHTML = "Xin moi nhap username";
+                return false;
+            }
+            else {
+                document.getElementById('errorName').innerHTML = " ";
+            }
+            if (pwd.length == 0 || pwd == null) {
+                document.getElementById('errorPass').innerHTML = "Xin moi nhap password";
+                return false;
+            }
+            else {
+                document.getElementById('errorPass').innerHTML = "";
+            }
+            if (user != "admin" && user != null) {
+                document.getElementById('errorName').innerHTML = "Sai username";
+                return false;
+            }
+            if (pwd != oldpass && pwd != null) {
+                document.getElementById('errorPass').innerHTML = "Sai password r";
+                return false;
+            }
+
+            if (true) {
+                document.getElementById('login').innerText = "Dang nhap thanh cong";
+                document.getElementById('login').style.background = 'antiquewhite';
+                document.getElementById('success').innerHTML = 'Thanh cong';
+            }
+        }
+        function reset() {
+            document.getElementById('username').value = '';
+            document.getElementById('pwd').value = '';
+            document.getElementById('username').value = '';
+            document.getElementById('oldpass').value = '';
+            document.getElementById('newpass').value = '';
+            document.getElementById('errorOldpass').value = '';
+            document.getElementById('errorNewPass').value = '';
+            document.getElementById('success').value = '';
+        }
+        function loadingLogin() {
+            document.getElementById('loading').innerHTML = "Loading....";
+            setTimeout(function () {
+                validate();
+                document.getElementById('loading').innerHTML = "Login";
+            }, 2000);
+        }
+        function forgot() {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('save').style.display = 'block';
+            document.getElementById('formName').innerHTML = 'Change your password';
+        }
+        function validateNewPass() {
+            const oldPassword = document.getElementById('oldpass').value;
+            const newPassword = document.getElementById('newpass').value;
+            console.log(oldPassword);
+            console.log(newPassword);
+            if (oldPassword.trim().length == 0 || oldPassword == null) {
+                document.getElementById('errorOld').innerHTML = "Xin moi nhap old password";
+                return false;
+            }
+            else {
+                document.getElementById('errorOld').innerHTML = " ";
+            }
+            if (newPassword.trim().length == 0 || newPassword == null) {
+                document.getElementById('errorNew').innerHTML = "Xin moi nhap new password";
+                return false;
+            }
+            else {
+                document.getElementById('errorNew').innerHTML = "";
+            }
+            if (newPassword == oldPassword) {
+                document.getElementById('errorNew').innerHTML = "Mat khau moi phai khac mat khau cu";
+                return false;
+            }
+            else {
+                document.getElementById('errorNew').innerHTML = "";
+            }
+            if (true) {
+                oldpass = newPassword;
+                document.getElementById('success').innerHTML = 'Thanh cong';
+                document.getElementById('login').style.display = 'block';
+                document.getElementById('save').style.display = 'none';
+            }
+        }
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="../js/script.js"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

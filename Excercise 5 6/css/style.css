@@ -1,0 +1,20 @@
+*{
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+#form-wrapped{
+    margin-top:50px;
+}
+#form-wrapped .form-inner{
+    border:10px solid grey;
+    padding: 20px 40px;
+}
+h2{
+    text-align:center;
+}
+#form-wrapped  .form-inner .form-group a{
+    color:#1f1f1f;
+    text-decoration: none;
+    text-align: center;
+}
